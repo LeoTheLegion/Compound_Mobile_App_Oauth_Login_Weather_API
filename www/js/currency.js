@@ -13,11 +13,15 @@ var docurrency = function(){
         
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
+
+    $('#content').html("<h1>BASED ON USD</h1><ul id='list'></ul>");
 }
 
 
-function buildcurrency(JSON){
-    
-
+function buildcurrency(json){
+    var list = $("#list");
+    $.each(json.rates,function(key,value){
+        list.append("<li>" + key + "," +value + "</li>");
+    });
 }
 
