@@ -1,5 +1,7 @@
-var domap = function() { //This function should be used to build the map in the content element
-    let workspace = document.getElementById("content");
-    workspace.innerHTML = "";
-    //TODO : ADD MAP CONTENT
+var domap = function() { 
+    $('#content').html("<div id='map'></div>");
+
+    var default_LAT = 26.373113
+    var default_LON = -80.100736
+    initMap(default_LAT,default_LON);
 }

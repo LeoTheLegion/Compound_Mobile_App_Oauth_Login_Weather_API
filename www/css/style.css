@@ -70,7 +70,7 @@ button{
 }
 
 
-#home{
+#homebtn{
     font-weight: bold;
     font-size:20px;
     width: 24%;
@@ -79,7 +79,7 @@ button{
     margin: 0 0 0 0;
     border: 0 0 0 0;
 }
-#map{
+#mapbtn{
     font-weight: bold;
     font-size:20px;
     width:25%;
@@ -90,7 +90,7 @@ button{
 }
 
 
-#weather{
+#weatherbtn{
     font-weight: bold;
     font-size:20px;
     width: 25%;
@@ -100,7 +100,7 @@ button{
     border: 0 0 0 0;
 }
 
-#currency{
+#currencybtn{
     font-size:20px;
     font-weight: bold;
     width: 24%;

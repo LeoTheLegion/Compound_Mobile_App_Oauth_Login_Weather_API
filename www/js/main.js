@@ -1,11 +1,11 @@
-document.addEventListener("DOMContentLoaded", function(){
+$(document).ready(function(){
     //Do this when DOM is loaded
 
     //Set event listeners/handlers for buttons
-    document.getElementById('home').onclick = dohome;
-    document.getElementById('weather').onclick = doweather;
-    document.getElementById('map').onclick = domap;
-    document.getElementById('currency').onclick = docurrency;
+    $('#homebtn').click(dohome);
+    $('#weatherbtn').click(doweather);
+    $('#mapbtn').click(domap);
+    $('#currencybtn').click(docurrency);
     
     dohome();
 });

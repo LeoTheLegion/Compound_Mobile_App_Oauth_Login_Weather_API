@@ -16,11 +16,7 @@ var docurrency = function(){
 }
 
 
-function buildcurrency(currency){
-    let workspace = document.getElementById("content");
-    workspace.innerHTML = "";
-    //TODO : CURRENCY DATA IS IN JSON OBJECT currency
-    //All you need to do is build it into content.
+function buildcurrency(JSON){
     
 
 }

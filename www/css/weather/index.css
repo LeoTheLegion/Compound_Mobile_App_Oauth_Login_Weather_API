@@ -1,0 +1,17 @@
+#gps{
+    width: auto;
+    height: 2em;
+    vertical-align: middle;
+}
+
+#location{
+    width: 80%;
+}
+
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+height: 25em;
+}
+      
+      
