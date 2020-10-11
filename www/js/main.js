@@ -6,6 +6,8 @@ $(document).ready(function(){
     $('#weatherbtn').click(doweather);
     $('#mapbtn').click(domap);
     $('#currencybtn').click(docurrency);
-    
+
+    $('#login').click(toggleSignIn);
+    initOAuth([$('#homebtn'),$('#weatherbtn'), $('#mapbtn'),$('#currencybtn')]);
     dohome();
 });

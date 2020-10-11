@@ -2,7 +2,7 @@ var doweather = function() {
     $('#content').html(
     '<section id="fetch">'+
         '<div class = "ui-widget">'+
-            '<input id = "location" placeholder="Please enter City, State, Zip code or Lat/Long">'+
+            '<input id = "location" placeholder="Please enter City, State, or Lat/Long">'+
             '<img id="gps" src="img/weather/gps_target.png">'+
             '<br>'+
             '<br>'+

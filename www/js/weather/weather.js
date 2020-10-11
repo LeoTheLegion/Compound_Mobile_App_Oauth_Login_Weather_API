@@ -1,17 +1,29 @@
-var APIKEY = "05d6b4bb7a9ea7a316223f7e9bedb3cf";
-var GETROOT = 'https://api.openweathermap.org/data/2.5/weather';
+var GETROOT = 'https://weather-ydn-yql.media.yahoo.com/forecastrss';
 
 var getWeatherFromAPICall = function(query,callback){
-    var GET = GETROOT + '?'+ query + "&appid=" + APIKEY;
-    console.log('Getting Weather with query: ' + query);
-    $.getJSON(GET, callback);
+    var GET = GETROOT + '?'+ query + '&format=json';
+    console.log('Getting Weather with GET: ' + GET);
+
+    $.ajax({
+        url: GET,
+        type: 'GET',
+        dataType: 'json',
+        success: callback ,
+        error: function() { alert('Failed!'); },
+        beforeSend: setHeader
+      });
+
+    function setHeader(xhr) {
+    var token = window.sessionStorage.getItem("token");
+    xhr.setRequestHeader("Authorization", "Bearer " + token);
+    }
 }
 
 var getWeather = function(callback){
     var input = $('#location').val();
 
     if(isZipCode(input)){
-        getWeatherFromAPICall("q=" + input + ",us",callback);
+        alert("We are not able to process Zipcodes with Yahoo :(")
         return;
     }
 
@@ -26,7 +38,7 @@ var getWeather = function(callback){
         return;
     }
 
-    getWeatherFromAPICall("q=" + input,callback);
+    getWeatherFromAPICall("location=" + input,callback);
 }
 
 var isZipCode = function(input){
