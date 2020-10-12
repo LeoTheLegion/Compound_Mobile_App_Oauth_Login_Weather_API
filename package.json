@@ -21,11 +21,18 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
-      "cordova-plugin-geolocation": {}
+      "cordova-plugin-geolocation": {},
+      "cordova-plugin-buildinfo": {},
+      "cordova-universal-links-plugin": {}
     },
     "platforms": [
       "browser",
       "android"
     ]
+  },
+  "dependencies": {
+    "cloudmersive-currency-api-client": "^1.2.0",
+    "cordova-plugin-buildinfo": "4.0.0",
+    "cordova-universal-links-plugin-fix": "1.2.1"
   }
 }

@@ -1,20 +1,52 @@
 var docurrency = function(){
-    
-    console.log("GETTING CURRENCY");
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            let currency = JSON.parse(this.responseText);
-            console.log(currency);
-            buildcurrency(currency);
-        }
-    };
-     url = 'https://api.exchangeratesapi.io/latest?base=USD'
-        
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
+    $('#content').html( '<input id = "sourcePrice" placeholder="Please enter value">'+
+                        '<select id = "source"></select>'+
+                        '<select id = "destination"></select>'+
+                        '<div id = "convertedValue"></div>'+
+                        '<button id="convert">Convert</button>'
+    )
 
-    $('#content').html("<h1>BASED ON USD</h1><ul id='list'></ul>");
+    $('#source').append('<option value="USD">USD</option>')
+    $('#destination').append('<option value="USD">USD</option>')
+
+    getExchangeRate($("#source").val(),function(json){
+        console.log(json);
+        $.each(json.rates,function(key,value){
+            $('#source').append('<option value="'+ key +'">'+ key +'</option>');
+            $('#destination').append('<option value="'+ key +'">'+ key +'</option>');
+        });
+    })
+
+    $('#convert').click(function(){
+        Convert();
+    });
+
+    $('#source').click(function(){
+        Convert();
+    });
+
+    $('#destination').click(function(){
+        Convert();
+    });
+
+    Convert();
+}
+
+function Convert(){
+    var sourcePrice = $("#sourcePrice").val();
+    if(isNaN(sourcePrice)){
+        alert("Please put a real number..")
+        return;
+    }
+    getExchangeRate($("#source").val(),function(json){
+        var convertValue = json.rates[$('#destination').val()] * $("#sourcePrice").val();
+        $("#convertedValue").text(convertValue.toFixed(2));
+    })
+}
+
+function getExchangeRate(source,callback){
+    var GET  = "https://api.exchangeratesapi.io/latest?base="+source;
+    $.getJSON(GET, callback);
 }
 
 
