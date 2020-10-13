@@ -15,11 +15,9 @@ function initOAuth(buttons) {
       var isAnonymous = user.isAnonymous;
       var uid = user.uid;
       var providerData = user.providerData;
-      document.getElementById('login').textContent = 'Sign out';
       setButtonsActiveTo(true);
       //else keep the app disabled or re-disabled it
     } else {
-      document.getElementById('login').textContent = 'Sign in with Yahoo';
       setButtonsActiveTo(false);
     }
   });
@@ -27,11 +25,15 @@ function initOAuth(buttons) {
 
 function setButtonsActiveTo(flag){
   for ( var i = 0, l = buttons_oauth.length; i < l; i++ ) {
-    buttons_oauth[i].prop("disabled",!flag);
+    if(flag){
+      buttons_oauth[i].show();
+    }else{
+      buttons_oauth[i].hide();
+    }
   }
 }
 
-function toggleSignIn() {
+function toggleSignIn(callback) {
   //If the current user object does not exist
   if (!firebase.auth().currentUser) {
     //Set the auth provider to yahoo
@@ -42,6 +44,7 @@ function toggleSignIn() {
         var token = result.credential.accessToken;
         window.sessionStorage.setItem("token",token);
         console.log(result);
+        callback();
       })
       .catch(function (error) { //On failure alert user or report error to console
         var errorCode = error.code;
@@ -55,7 +58,13 @@ function toggleSignIn() {
         }
       });
   } else {
-    firebase.auth().signOut();
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+      callback();
+    }).catch(function(error) {
+      // An error happened.
+    });
+    
   }
 
 }
